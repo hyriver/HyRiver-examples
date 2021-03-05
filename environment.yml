@@ -1,0 +1,53 @@
+name: binder
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # the stack deps
+  - setuptools
+  - owslib
+  - defusedxml
+  - requests
+  - aiohttp
+  - chardet
+  - aiodns
+  - brotlipy
+  - nest-asyncio
+  - xarray
+  - netCDF4
+  - geopandas
+  - pyproj
+  - pyarrow
+  - rasterio
+  - shapely
+  - orjson
+  - simplejson
+  - lxml
+  - openpyxl
+  - dask
+  - networkx
+  - matplotlib-base
+  - folium
+
+  # the stack packages
+  - pygeoogc
+  - pygeoutils
+  - pynhd
+  - py3dep
+  - pydaymet
+  - pygeohydro
+
+  # speedups
+  - bottleneck
+  - pygeos
+
+  # additional deps
+  - descartes
+  - cartopy
+  - cmocean
+  - mapclassify
+  - contextily
+  - osmnx
+  - tqdm
+  - pytables
+
