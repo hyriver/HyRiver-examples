@@ -35,6 +35,7 @@ dependencies:
   - pynhd
   - py3dep
   - pydaymet
+  # - pygeohydro
 
   # speedups
   - bottleneck

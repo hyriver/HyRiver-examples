@@ -50,7 +50,14 @@ jobs:
         run: |-
           conda info -a
           conda list
-          python -m pip install nbmake pygeohydro
+          python -m pip install nbmake
+          python -m pip install --no-deps \
+              git+https://github.com/cheginit/pygeoogc.git \
+              git+https://github.com/cheginit/pygeoutils.git \
+              git+https://github.com/cheginit/pynhd.git \
+              git+https://github.com/cheginit/py3dep.git \
+              git+https://github.com/cheginit/pydaymet.git \
+              git+https://github.com/cheginit/pygeohydro.git
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
