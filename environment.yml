@@ -51,4 +51,6 @@ dependencies:
   - tqdm
   - pytables
   - ffmpeg
+  - jupyterlab_widgets
+  - ipywidgets
 
