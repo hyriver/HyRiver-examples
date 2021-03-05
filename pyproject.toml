@@ -1,0 +1,9 @@
+[tool.nbqa.mutate]
+isort = 1
+black = 1
+pyupgrade = 1
+
+[tool.nbqa.addopts]
+isort = [-l, "100", --profile, "black", --multi-line, "3", --tc, "True", --up, "True"]
+black = [-t, py38, -l, "100"]
+pyupgrade = ["--py36-plus"]
