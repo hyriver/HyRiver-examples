@@ -11,8 +11,8 @@ jobs:
         shell: bash -l {0}
     strategy:
       matrix:
-        python-version: 3.9
-        os: ubuntu-latest
+        python-version: [3.8]
+        os: [ubuntu-latest]
 
     steps:
       - name: Cancel Previous Runs
