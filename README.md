@@ -1,5 +1,8 @@
 # GeoHydroHub Examples
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/geohydrohub-examples/HEAD)
+[![CI](https://github.com/cheginit/geohydrohub-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/geohydrohub-examples/actions/workflows/test.yml)
+
 [GeoHydroHub](https://pygeohydro.readthedocs.io) is a software stack consists of six
 Python libraries and is designed to aid in watershed analysis through web services.
 Currently, they only includes hydrology and climatology data
