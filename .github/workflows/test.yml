@@ -11,7 +11,7 @@ jobs:
         shell: bash -l {0}
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: [3.8]
         os: [ubuntu-latest]
 
     steps:
@@ -63,4 +63,4 @@ jobs:
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run pytest
         run: |-
-          python -m pytest --nbmake -n=auto notebooks
+          python -m pytest --ignore=notebooks/nid_dib.ipynb --nbmake -n=auto notebooks
