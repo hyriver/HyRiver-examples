@@ -1,7 +1,5 @@
 [![Logo](https://raw.githubusercontent.com/cheginit/HydRiver-examples/main/notebooks/_static/hydriver_logo_text.png)](https://github.com/cheginit/HydRiver)
 
-|
-
 # HydRiver Examples
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hydriver-examples/HEAD)
