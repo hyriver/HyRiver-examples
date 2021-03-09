@@ -1,9 +1,9 @@
 [![Logo](https://raw.githubusercontent.com/cheginit/HydRiver-examples/main/notebooks/_static/hydriver_logo_text.png)](https://github.com/cheginit/HydRiver)
 
-# HydRiver Examples
-
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hydriver-examples/HEAD)
 [![CI](https://github.com/cheginit/hydriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/hydriver-examples/actions/workflows/test.yml)
+
+# Examples Notebooks
 
 [HydRiver](https://pygeohydro.readthedocs.io) is a software stack consisting of six
 Python libraries that are designed to aid in watershed analysis through web services.
