@@ -1,11 +1,11 @@
-[![Logo](https://raw.githubusercontent.com/cheginit/HyRiver-examples/main/notebooks/_static/hydriver_logo_text.png)](https://github.com/cheginit/HyRiver)
+[![Logo](https://raw.githubusercontent.com/cheginit/HyRiver-examples/main/notebooks/_static/hyriver_logo_text.png)](https://github.com/cheginit/HyRiver)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hydriver-examples/HEAD)
-[![CI](https://github.com/cheginit/hydriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/hydriver-examples/actions/workflows/test.yml)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hyriver-examples/HEAD)
+[![CI](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml)
 
 # Examples Notebooks
 
-[HyRiver](https://hydriver.readthedocs.io) is a software stack consisting of six
+[HyRiver](https://hyriver.readthedocs.io) is a software stack consisting of six
 Python libraries that are designed to aid in watershed analysis through web services.
 Currently, this project only includes hydrology and climatology data
 within the US. Some of the major capabilities of HyRiver are as follows:
