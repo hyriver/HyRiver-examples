@@ -8,13 +8,13 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg4542"
-   viewBox="0 0 330.07179 92.524439"
+   viewBox="0 0 286.3599 92.524439"
    version="1.1"
-   sodipodi:docname="hydriver_logo_text.svg"
-   width="330.07178"
+   sodipodi:docname="hyriver_logo_text.svg"
+   width="286.35989"
    height="92.524452"
    inkscape:version="1.0.2 (1.0.2+r75+1)"
-   inkscape:export-filename="/home/taher/repos/stack/geohydrohub-examples/notebooks/_static/hydriver_logo_text.png"
+   inkscape:export-filename="/home/taher/repos/stack/HyRiver-examples/notebooks/_static/hyriver_logo_text.png"
    inkscape:export-xdpi="128.16"
    inkscape:export-ydpi="128.16">
   <defs
@@ -72,7 +72,7 @@
      showgrid="false"
      inkscape:zoom="2.1931875"
      inkscape:cx="140.39782"
-     inkscape:cy="68.908544"
+     inkscape:cy="68.908542"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
@@ -116,7 +116,7 @@
            id="tspan2230"
            x="-620.97913"
            y="-13.421007"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15.9864px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke-width:0.249788;stroke-miterlimit:4;stroke-dasharray:none">ydRiver</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15.9864px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke-width:0.249788;stroke-miterlimit:4;stroke-dasharray:none">yRiver</tspan></text>
       <path
          id="path1224"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.88475px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;fill-opacity:1;stroke:#b8e092;stroke-width:0.749363;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter1226)"

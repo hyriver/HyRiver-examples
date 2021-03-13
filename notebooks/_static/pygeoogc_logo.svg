@@ -14,7 +14,7 @@
    width="392.15012"
    height="107.19216"
    inkscape:version="1.0.2 (1.0.2+r75+1)"
-   inkscape:export-filename="/home/taher/repos/stack/geohydrohub-examples/notebooks/_static/pygeoogc_logo.png"
+   inkscape:export-filename="/home/taher/repos/stack/HyRiver-examples/notebooks/_static/pygeoogc_logo.png"
    inkscape:export-xdpi="128.16"
    inkscape:export-ydpi="128.16">
   <defs
@@ -85,7 +85,7 @@
      showgrid="false"
      inkscape:zoom="2.1845351"
      inkscape:cx="203.54226"
-     inkscape:cy="26.27229"
+     inkscape:cy="26.272288"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
@@ -103,7 +103,7 @@
        transform="matrix(4.0034,0,0,4.0034,2687.6,451.03)">
       <g
          id="g2466"
-         transform="translate(0,-0.07317026)">
+         transform="translate(1.3648135,-0.07317026)">
         <text
            xml:space="preserve"
            style="font-size:13.322px;line-height:1.25;font-family:'EB Garamond';-inkscape-font-specification:'EB Garamond, Normal';fill:#4747a0;fill-opacity:1;stroke:#b8e092;stroke-width:0.499575;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter2458)"
@@ -114,7 +114,7 @@
              id="tspan2446"
              x="-640.99261"
              y="-5.081141"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.9966px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke:#b8e092;stroke-width:0.499575;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">HydRiver</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.9966px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke:#b8e092;stroke-width:0.499575;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">HyRiver</tspan></text>
         <text
            xml:space="preserve"
            style="font-size:13.322px;line-height:1.25;font-family:'EB Garamond';-inkscape-font-specification:'EB Garamond, Normal';fill:#4747a0;fill-opacity:1;stroke-width:0.249788;stroke-miterlimit:4;stroke-dasharray:none"
@@ -125,7 +125,7 @@
              id="tspan2230"
              x="-640.99261"
              y="-5.081141"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.9966px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke-width:0.249788;stroke-miterlimit:4;stroke-dasharray:none">HydRiver</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.9966px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4747a0;fill-opacity:1;stroke-width:0.249788;stroke-miterlimit:4;stroke-dasharray:none">HyRiver</tspan></text>
       </g>
       <circle
          style="fill:#62a2fb;fill-opacity:1;stroke-width:0.103564"
@@ -183,7 +183,7 @@
             <dc:title>Openclipart</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:title></dc:title>
+        <dc:title />
         <dc:date>2013-10-06T13:49:20</dc:date>
         <dc:description>umbrella pictogram</dc:description>
         <dc:source>https://openclipart.org/detail/184614/umbrella-by-harini-184614</dc:source>
