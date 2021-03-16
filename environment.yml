@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  # the stack deps
+  # HyRiver deps
   - setuptools
   - owslib
   - defusedxml
@@ -29,19 +29,19 @@ dependencies:
   - matplotlib-base
   - folium
 
-  # the stack packages
+  # HyRiver packages
   - pygeoogc
   - pygeoutils
   - pynhd
   - py3dep
   - pydaymet
-  # - pygeohydro
+  - pygeohydro
 
-  # speedups
+  # Speedups
   - bottleneck
   - pygeos
 
-  # additional deps
+  # Other third-party deps
   - descartes
   - cartopy
   - cmocean
