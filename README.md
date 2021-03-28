@@ -1,6 +1,6 @@
 [![Logo](https://raw.githubusercontent.com/cheginit/HyRiver-examples/main/notebooks/_static/hyriver_logo_text.png)](https://github.com/cheginit/HyRiver)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hyriver-examples/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hyriver-examples/HEAD?urlpath=lab/tree/notebooks)
 [![CI](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml)
 
 # Examples Notebooks
