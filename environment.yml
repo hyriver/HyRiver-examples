@@ -30,7 +30,7 @@ dependencies:
   - folium
 
   # HyRiver packages
-  - pygeoog=0.10.1
+  - pygeoogc=0.10.1
   - pygeoutils=0.10.1
   - pynhd=0.10.1
   - py3dep=0.10.1
