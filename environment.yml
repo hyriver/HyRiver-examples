@@ -24,18 +24,18 @@ dependencies:
   - simplejson
   - lxml
   - openpyxl
-  - dask
+  - dask-core
   - networkx
   - matplotlib-base
   - folium
 
   # HyRiver packages
-  - pygeoogc
-  - pygeoutils
-  - pynhd
-  - py3dep
-  - pydaymet
-  - pygeohydro
+  - pygeoog=0.10.1
+  - pygeoutils=0.10.1
+  - pynhd=0.10.1
+  - py3dep=0.10.1
+  - pydaymet=0.10.2
+  - pygeohydro=0.10.2
 
   # Speedups
   - bottleneck
