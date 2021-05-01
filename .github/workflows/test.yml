@@ -60,4 +60,3 @@ jobs:
       - name: Run nbmake
         run: |-
           python -m pytest --ignore=notebooks/nid_dib.ipynb --nbmake -n=auto notebooks
-
