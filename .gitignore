@@ -109,3 +109,4 @@ ENV/
 .nvimlog
 tmp/
 tags*
+nhdplus_vaa.parquet
