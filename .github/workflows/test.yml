@@ -48,6 +48,7 @@ jobs:
           mamba list
           python -m pip install pytest pytest-xdist nbmake
           python -m pip install --no-deps \
+              git+https://github.com/cheginit/async_retriever.git \
               git+https://github.com/cheginit/pygeoogc.git \
               git+https://github.com/cheginit/pygeoutils.git \
               git+https://github.com/cheginit/pynhd.git \
