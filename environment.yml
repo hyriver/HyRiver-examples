@@ -3,33 +3,61 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  # HyRiver deps
-  - setuptools
-  - owslib
-  - defusedxml
-  - requests
-  - aiohttp
-  - chardet
+  # async_retriever
   - aiodns
+  - aiohttp
+  - aiohttp-client-cache
+  - aiosqlite
   - brotlipy
+  - chardet
+  - cytoolz
   - nest-asyncio
-  - xarray
-  - netCDF4
-  - geopandas
-  - pyproj
-  - pyarrow
-  - rasterio
-  - shapely
   - orjson
+  - setuptools
+
+  # pygeoogc deps
+  - defusedxml
+  - owslib
+  - pyyaml
+  - pyproj
+  - requests
+  - requests-cache
+  - setuptools
+  - shapely
   - simplejson
-  - lxml
-  - openpyxl
-  - dask-core
+  - urllib3
+
+  # pygeoutils deps
+  - affine
+  - geopandas
+  - numpy
+  - netcdf4
+  - orjson
+  - rasterio
+  - xarray
+
+  # pynhd deps
   - networkx
-  - matplotlib-base
+  - pandas
+  - pyarrow
+
+  # pygeohydro deps
   - folium
+  - lxml
+  - matplotlib-base
+  - openpyxl
+
+  # pydaymet deps
+  - dask-core
+  - scipy
+
+  # optional deps to speed up xarray and geopandas
+  - bottleneck
+  - rtree
+  - pygeos
 
   # HyRiver packages
+  - async_retriever=0.1.0
   - pygeoogc=0.10.1
   - pygeoutils=0.10.1
   - pynhd=0.10.1
@@ -37,16 +65,12 @@ dependencies:
   - pydaymet=0.10.2
   - pygeohydro=0.10.2
 
-  # Speedups
-  - bottleneck
-  - pygeos
-
   # Other third-party deps
-  - descartes
   - cartopy
   - cmocean
   - mapclassify
   - contextily
+  - colorcet
   - osmnx
   - tqdm
   - pytables
