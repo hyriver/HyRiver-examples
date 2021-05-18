@@ -41,6 +41,9 @@ dependencies:
   - pandas
   - pyarrow
 
+  # py3dep deps
+  - click
+
   # pygeohydro deps
   - folium
   - lxml
