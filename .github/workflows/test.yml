@@ -60,4 +60,4 @@ jobs:
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run nbmake
         run: |-
-          python -m pytest --ignore=notebooks/nid_dib.ipynb --nbmake -n=auto notebooks
+          python -m pytest --ignore=notebooks/nid_dib.ipynb --nbmake -n=1 notebooks
