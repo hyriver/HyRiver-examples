@@ -6,4 +6,4 @@ pyupgrade = 1
 [tool.nbqa.addopts]
 isort = ["-l", "100", "--profile", "black", "--multi-line", "3", "--tc", "--up"]
 black = ["-t", "py38", "-l", "100"]
-pyupgrade = ["--py36-plus"]
+pyupgrade = ["--py37-plus"]
