@@ -3,17 +3,18 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
+  - python>=3.8
+
   # async_retriever
   - aiodns
   - aiohttp
   - aiohttp-client-cache
   - aiosqlite
   - brotlipy
-  - chardet
+  - cchardet
   - cytoolz
   - nest-asyncio
   - orjson
-  - setuptools
 
   # pygeoogc deps
   - defusedxml
@@ -36,13 +37,13 @@ dependencies:
   - rasterio
   - xarray
 
+  # py3dep
+  - click
+
   # pynhd deps
   - networkx
   - pandas
   - pyarrow
-
-  # py3dep deps
-  - click
 
   # pygeohydro deps
   - folium
@@ -59,24 +60,27 @@ dependencies:
   - rtree
   - pygeos
 
-  # HyRiver packages
-  - async_retriever=0.1.0
-  - pygeoogc=0.10.1
-  - pygeoutils=0.10.1
-  - pynhd=0.10.1
-  - py3dep=0.10.1
-  - pydaymet=0.10.2
-  - pygeohydro=0.10.2
-
   # Other third-party deps
   - cartopy
   - cmocean
   - mapclassify
   - contextily
   - colorcet
+  - geoviews
+  - hvplot
   - osmnx
   - tqdm
   - pytables
   - ffmpeg
   - jupyterlab_widgets
   - ipywidgets
+
+  - pip
+  - pip:
+    - git+https://github.com/cheginit/async_retriever.git
+    - git+https://github.com/cheginit/pygeoogc.git
+    - git+https://github.com/cheginit/pygeoutils.git
+    - git+https://github.com/cheginit/pynhd.git
+    - git+https://github.com/cheginit/py3dep.git
+    - git+https://github.com/cheginit/pydaymet.git
+    - git+https://github.com/cheginit/pygeohydro.git
