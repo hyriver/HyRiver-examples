@@ -19,21 +19,21 @@ dependencies:
   # pygeoogc deps
   - defusedxml
   - owslib
+  - pydantic
   - pyyaml
   - pyproj
   - requests
   - requests-cache
-  - setuptools
   - shapely
   - simplejson
   - urllib3
 
   # pygeoutils deps
   - affine
+  - dask-core
   - geopandas
-  - numpy
   - netcdf4
-  - orjson
+  - numpy
   - rasterio
   - xarray
 
@@ -52,12 +52,10 @@ dependencies:
   - openpyxl
 
   # pydaymet deps
-  - dask-core
   - scipy
 
   # optional deps to speed up xarray and geopandas
   - bottleneck
-  - rtree
   - pygeos
 
   # Other third-party deps
