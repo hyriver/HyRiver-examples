@@ -4,7 +4,7 @@ name: CI
 
 jobs:
   test:
-    name: python ${{ matrix.python-version }}, ${{ matrix.os }}
+    name: ${{ matrix.notebook }} notebook
     runs-on: ${{ matrix.os }}
     defaults:
       run:
