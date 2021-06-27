@@ -12,7 +12,7 @@ repos:
       args: ['--fix=lf']
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 0.13.0
+    rev: 0.13.1
     hooks:
       - id: nbqa-isort
         name: Format notebooks; sort imports by isort
