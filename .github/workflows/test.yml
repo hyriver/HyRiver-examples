@@ -46,10 +46,15 @@ jobs:
         run: |-
           mamba info -a
           mamba list
-          python -m pip install pytest pytest-xdist nbmake
+          python -m pip install pytest nbmake
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run nbmake
         run: |-
-          python -m pytest --nbmake -n=1 notebooks/${{ matrix.notebook }}.ipynb
+          python -m pytest --nbmake --overwrite notebooks/${{ matrix.notebook }}.ipynb
+          git config --global user.email "nbmake-bot@example.com"
+          git config --global user.name "nbmake-bot"
+          git add notebooks
+          git commit -m "BOT: Reran notebooks"
+          git push
