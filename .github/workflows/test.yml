@@ -53,6 +53,7 @@ jobs:
       - name: Run nbmake
         run: |-
           python -m pytest --nbmake --overwrite notebooks/${{ matrix.notebook }}.ipynb
+          git pull
           git config --global user.email "nbmake-bot@example.com"
           git config --global user.name "nbmake-bot"
           git add notebooks
