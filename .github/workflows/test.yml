@@ -11,9 +11,9 @@ jobs:
         shell: bash -l {0}
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
         os: [ubuntu-latest]
-
+        notebook: ['3dep', 'columbia', 'ndvi', 'nhdplus', 'ssebop', 'noaa', 'nwis', 'aridity', 'daymet', 'webservices', 'nid', 'nlcd', 'us_coasts']
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
@@ -46,18 +46,10 @@ jobs:
         run: |-
           mamba info -a
           mamba list
-          python -m pip install pytest pytest-xdist nbmake
-          python -m pip install --no-deps \
-              git+https://github.com/cheginit/async_retriever.git \
-              git+https://github.com/cheginit/pygeoogc.git \
-              git+https://github.com/cheginit/pygeoutils.git \
-              git+https://github.com/cheginit/pynhd.git \
-              git+https://github.com/cheginit/py3dep.git \
-              git+https://github.com/cheginit/pydaymet.git \
-              git+https://github.com/cheginit/pygeohydro.git
+          python -m pip install pytest nbmake
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run nbmake
         run: |-
-          python -m pytest --ignore=notebooks/nid_dib.ipynb --nbmake -n=1 notebooks
+          python -m pytest --nbmake notebooks/${{ matrix.notebook }}.ipynb
