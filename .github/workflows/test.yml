@@ -46,10 +46,10 @@ jobs:
         run: |-
           mamba info -a
           mamba list
-          python -m pip install pytest nbmake
+          python -m pip install pytest pytest-xdist nbmake
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run nbmake
         run: |-
-          python -m pytest --nbmake notebooks/${{ matrix.notebook }}.ipynb
+          python -m pytest --nbmake -n=1 notebooks/${{ matrix.notebook }}.ipynb
