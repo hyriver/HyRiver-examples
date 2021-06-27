@@ -10,4 +10,3 @@ black = ["-t", "py38", "-l", "100"]
 pyupgrade = ["--py37-plus"]
 flake8 = ["--ignore", "E203,E402,E501,E731,W503,D107,D105", "--exclude",
 "__init__.py,.ipynb_checkpoints", "--max-line-length", "100"]
-
