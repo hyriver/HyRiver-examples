@@ -52,7 +52,9 @@ jobs:
           python -c "import pygeohydro; pygeohydro.show_versions()"
       - name: Run nbmake
         run: |-
-          python -m pytest --nbmake --overwrite notebooks/${{ matrix.notebook }}.ipynb && \
+          python -m pytest --nbmake --overwrite notebooks/${{ matrix.notebook }}.ipynb
+      - name: Push changes
+        run: |-
           git pull && \
           git config --global user.email "nbmake-bot@example.com" && \
           git config --global user.name "nbmake-bot" && \
