@@ -17,17 +17,14 @@ repos:
       - id: nbqa-isort
         name: Format notebooks; sort imports by isort
         files: notebooks
-        args: [--nbqa-mutate]
 
       - id: nbqa-black
         name: Format notebooks; reformat by black
         files: notebooks
-        args: [--nbqa-mutate]
 
       - id: nbqa-pyupgrade
         files: notebooks
         name: Format notebooks; upgrade syntax to Python 3.7+ by pyupgrade
-        args: [--nbqa-mutate]
 
       - id: nbqa-flake8
         name: Format notebooks; lint with flake8
