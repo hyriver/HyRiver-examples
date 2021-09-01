@@ -13,7 +13,7 @@ jobs:
       matrix:
         python-version: [3.9]
         os: [ubuntu-latest]
-        notebook: ['3dep', 'columbia', 'ndvi', 'nhdplus', 'ssebop', 'noaa', 'nwis', 'aridity', 'daymet', 'webservices', 'nid', 'nlcd', 'us_coasts']
+        notebook: ['3dep', 'columbia', 'ndvi', 'nhdplus', 'ssebop', 'cross_section', 'noaa', 'nwis', 'aridity', 'pygeoapi', 'daymet', 'webservices', 'nid', 'nlcd', 'us_coasts']
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
