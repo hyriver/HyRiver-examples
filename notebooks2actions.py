@@ -7,5 +7,6 @@ nb_list = [f.stem for f in Path("notebooks").glob("*.ipynb") if "nid_dib" not in
 for line in fileinput.input(".github/workflows/test.yml", inplace=True):
     if "notebook: [" in line:
         print(f"        notebook: {nb_list}", end="")
+        print()
     else:
         print(line, end="")
