@@ -1,6 +1,16 @@
-on: [push, pull_request]
-
 name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+    tags-ignore:
+      - "**"
 
 jobs:
   test:
@@ -13,7 +23,7 @@ jobs:
       matrix:
         python-version: [3.9]
         os: [ubuntu-latest]
-        notebook: ['3dep', 'columbia', 'ndvi', 'nhdplus', 'ssebop', 'cross_section', 'noaa', 'nwis', 'aridity', 'pygeoapi', 'daymet', 'webservices', 'nid', 'nlcd', 'us_coasts']
+        notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'daymet', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'noaa', 'nwis', 'pygeoapi', 'ssebop', 'us_coasts', 'webservices']
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
