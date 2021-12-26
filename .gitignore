@@ -113,3 +113,4 @@ nhdplus_vaa.parquet
 nid_flw.pkl
 01013500_clm_basin.nc
 .DS_Store
+notebooks/images
