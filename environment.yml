@@ -6,13 +6,13 @@ dependencies:
   - python>=3.9
 
   # hyriver packages
-  - async_retriever=0.2.5
-  - pygeoogc=0.11.7
-  - pygeoutils=0.11.7
-  - py3dep=0.11.4
-  - pynhd=0.11.4
-  - pygeohydro=0.11.4
-  - pydaymet=0.11.4
+  - async_retriever=0.3.0
+  - pygeoogc=0.12.0
+  - pygeoutils=0.12.0
+  - py3dep=0.12.0
+  - pynhd=0.12.0
+  - pygeohydro=0.12.0
+  - pydaymet=0.12.0
 
   # optional deps to speed up xarray and geopandas
   - bottleneck
