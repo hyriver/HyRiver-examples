@@ -11,6 +11,20 @@ repos:
     - id: mixed-line-ending
       args: ['--fix=lf']
 
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.10.1
+    hooks:
+    - id: isort
+      name: Sort imports with isort
+
+  - repo: https://github.com/psf/black
+    rev: 21.12b0
+    hooks:
+    - id: black
+      name: Autoformat with black
+      args: [-t, py38, -l, "100"]
+      additional_dependencies: [ipython, tokenize-rt]
+
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.2.2
     hooks:
