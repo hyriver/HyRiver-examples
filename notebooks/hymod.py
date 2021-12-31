@@ -73,11 +73,7 @@ def run(
     k_s: float,
     k_q: float,
 ) -> np.ndarray:
-    """Run the Hymod model.
-
-    Notes
-    -----
-    See https://www.proc-iahs.net/368/180/2015/piahs-368-180-2015.pdf
+    """Run the Hymod [1] model.
 
     Parameters
     ----------
@@ -86,24 +82,24 @@ def run(
     pet : array_like
         Potential evapotranspiration data in mm/day.
     c_max : float
-        Maximum storage capacity (1-500 [mm]).
+        Maximum storage capacity (1-100 [mm]).
     b_exp : float
-        Degree of spatial variability of the soil moisture capacity (0.1-2 [-]).
+        Degree of spatial variability of the soil moisture capacity (0-2 [-]).
     alpha : float
-        Factor distributing the flow between slow and quick release reservoirs (0.1-0.99 [-]).
+        Factor distributing the flow between slow and quick release reservoirs (0.2-0.99 [-]).
     k_s : float
-        Residence time of the slow release reservoir (0.001-0.1 [day]).
+        Residence time of the slow release reservoir (0.01-0.5 [day]).
     k_q : float
-        Residence time of the quick release reservoir (0.1-0.99 [day]).
+        Residence time of the quick release reservoir (0.5-1.2 [day]).
 
     Returns
     -------
-    q_s : array_like
+    array_like
         Discharge at the watershed outlet in mm/day.
 
     References
     ----------
-    Quan, Z.; Teng, J.; Sun, W.; Cheng, T. & Zhang, J. (2015): Evaluation of the HYMOD model
+    [1] Quan, Z.; Teng, J.; Sun, W.; Cheng, T. & Zhang, J. (2015): Evaluation of the HYMOD model
     for rainfall-runoff simulation using the GLUE method. Remote Sensing and GIS for Hydrology
     and Water Resources, 180 - 185, IAHS Publ. 368. DOI: 10.5194/piahs-368-180-2015.
     """
