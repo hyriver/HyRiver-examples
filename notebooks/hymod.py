@@ -38,32 +38,35 @@ def power(x: float, exp: float) -> float:
 @njit("UniTuple(f8, 2)(f8, f8, f8)", cache=True)
 def linear_reservoir(x_slow: float, inflow: float, k_s: float) -> float:
     """Run the linear reservoir model."""
-    x_slow = (1 - k_s) * x_slow + (1 - k_s) * inflow
-    outflow = k_s / (1 - k_s) * x_slow
-    return x_slow, outflow
+    xn_slow = (1 - k_s) * x_slow + (1 - k_s) * inflow
+    outflow = k_s / (1 - k_s) * xn_slow
+    return xn_slow, outflow
 
 
-@njit("UniTuple(f8, 3)(f8, f8, f8, f8, f8)", cache=True)
+@njit("UniTuple(f8, 2)(f8, f8, f8, f8, f8)", cache=True)
 def excess(
-    x_loss: float, c_max: float, b_exp: float, p_val: float, pet_val: float
-) -> Tuple[float, float, float]:
+    prcp_t: float,
+    pet_t: float,
+    x_loss: float,
+    c_max: float,
+    b_exp: float,
+) -> Tuple[float, float]:
     """Calculates excess precipitation and evaporation."""
-    xn_prev = x_loss
-    ct_prev = c_max * (1 - power(1 - ((b_exp + 1) * (xn_prev) / c_max), 1 / (b_exp + 1)))
-    er_1 = np.maximum(p_val - c_max + ct_prev, 0.0)
-    p_val = p_val - er_1
-    dummy = np.minimum((ct_prev + p_val) / c_max, 1)
+    ct_prev = c_max * (1 - power(1 - ((b_exp + 1) * (x_loss) / c_max), 1 / (b_exp + 1)))
+    er_1 = np.maximum(prcp_t - c_max + ct_prev, 0.0)
+    s_1 = prcp_t - er_1
+    dummy = np.minimum((ct_prev + s_1) / c_max, 1)
     xn = c_max / (b_exp + 1) * (1 - power(1 - dummy, b_exp + 1))
 
-    er_2 = np.maximum(p_val - (xn - xn_prev), 0.2)
+    er_2 = np.maximum(s_1 - (xn - x_loss), 0.2)
 
-    evap = (1 - (((c_max / (b_exp + 1)) - xn) / (c_max / (b_exp + 1)))) * pet_val
+    evap = (1 - (((c_max / (b_exp + 1)) - xn) / (c_max / (b_exp + 1)))) * pet_t
     xn = np.maximum(xn - evap, 0)
 
-    return er_1, er_2, xn
+    return er_1 + er_2, xn
 
 
-@njit("f8[::1](f8[::1], f8[::1], f8, f8, f8, f8, f8)", cache=True)
+@njit("f8[::1](f8[::1], f8[::1], f8, f8, f8, f8, f8, b1)", cache=True)
 def run(
     prcp: np.ndarray,
     pet: np.ndarray,
@@ -72,6 +75,7 @@ def run(
     alpha: float,
     k_s: float,
     k_q: float,
+    init_flow: bool = False,
 ) -> np.ndarray:
     """Run the Hymod [1] model.
 
@@ -91,6 +95,10 @@ def run(
         Residence time of the slow release reservoir (0.01-0.5 [day]).
     k_q : float
         Residence time of the quick release reservoir (0.5-1.2 [day]).
+    init_flow : bool, optional
+        Initialize the flow with non-zero values, defaults to ``False``. This
+        could be useful for cases where the initial flow is known to be a high
+        value, e.g., from the streamflow observation data.
 
     Returns
     -------
@@ -105,18 +113,14 @@ def run(
     """
 
     x_loss = 0.0
-    x_slow = 2.3503 / (k_s * 22.5)
+    x_slow = 2.3503 / (k_s * 22.5) if init_flow else 0.0
     x_quick = np.zeros(3, dtype="f8")
     t = 0
     n_steps = prcp.shape[0]
     q_out = np.zeros(n_steps, dtype="f8")
 
     for t in range(n_steps):
-        p_val = prcp[t]
-        pet_val = pet[t]
-
-        er_1, er_2, x_loss = excess(x_loss, c_max, b_exp, p_val, pet_val)
-        et = er_1 + er_2
+        et, x_loss = excess(prcp[t], pet[t], x_loss, c_max, b_exp)
 
         u_q = alpha * et
         u_s = (1 - alpha) * et
@@ -152,6 +156,7 @@ class HYMOD:
     qobs: pd.DataFrame
     bounds: List[Tuple[Tuple[float, ...], Tuple[float, ...]]]
     warm_up: int
+    init_flow: bool = False
 
     @staticmethod
     def simulate(
@@ -162,13 +167,14 @@ class HYMOD:
         alpha: float,
         k_s: float,
         k_q: float,
+        init_flow: bool = False,
     ) -> np.ndarray:
         """Simulate a watershed using HYMOD model."""
-        return run(prcp, pet, c_max, b_exp, alpha, k_s, k_q)
+        return run(prcp, pet, c_max, b_exp, alpha, k_s, k_q, init_flow)
 
     def fitness(self, x: np.ndarray) -> List[float]:
         """Compute objective functions."""
-        simulation = self.simulate(*self.clm.to_numpy("f8").T, *tuple(x))
+        simulation = self.simulate(*self.clm.to_numpy("f8").T, *tuple(x), self.init_flow)
         idx = np.s_[self.warm_up * 365 :]
         sim = simulation[idx]
         obs = self.qobs.to_numpy("f8").squeeze()[idx]
