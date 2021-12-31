@@ -31,3 +31,5 @@ dependencies:
   - ffmpeg
   - jupyterlab_widgets
   - ipywidgets
+  - numba
+  - pygmo
