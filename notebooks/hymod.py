@@ -1,24 +1,39 @@
 """HyMOD hydrological model.
 
-    The model is based on this file:
-    https://github.com/KMarkert/hymod/blob/master/python/src/hymod.py
+The model is based on this file:
+https://github.com/KMarkert/hymod/blob/master/python/src/hymod.py
 
-    This version rewrites the code using ``numba`` with type signatures for significant
-    speedup. Also, the naming convention has been changed to be consistent with
-    the snake case naming convention.
+This version rewrites the code using ``numba`` with type signatures for significant
+speed up. Also, the naming convention has been changed to be consistent with
+the snake case naming convention.
 """
-
+import functools
+import warnings
 from dataclasses import dataclass
 from typing import List, Tuple
 
 import numpy as np
 import pandas as pd
-from numba import njit
+
+try:
+    from numba import njit
+except ImportError:
+    warnings.warn("Numba not installed. Using slow pure python version.", UserWarning)
+
+    def njit(type, cache):
+        def decorator_njit(func):
+            @functools.wraps(func)
+            def wrapper_decorator(*args, **kwargs):
+                return func(*args, **kwargs)
+
+            return wrapper_decorator
+
+        return decorator_njit
 
 
 @njit("f8(f8, f8)", cache=True)
 def power(x: float, exp: float) -> float:
-    """Raise to power of abs value which is needed to capture invalid overflow with netgative values.
+    """Raise to power of abs value needed to capture invalid overflow with netgative values.
 
     Parameters
     ----------
