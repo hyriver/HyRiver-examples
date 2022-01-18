@@ -11,7 +11,7 @@ dependencies:
   - pygeoutils=0.12.2
   - py3dep=0.12.2
   - pynhd=0.12.1
-  - pygeohydro=1.12.3
+  - pygeohydro=0.12.3
   - pydaymet=0.12.2
 
   # Optional deps to speed up xarray
