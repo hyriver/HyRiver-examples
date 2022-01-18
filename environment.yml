@@ -5,18 +5,17 @@ channels:
 dependencies:
   - python>=3.9
 
-  # hyriver packages
+  # HyRiver packages
   - async_retriever=0.3.1
-  - pygeoogc=0.12.1
-  - pygeoutils=0.12.1
-  - py3dep=0.12.1
+  - pygeoogc=0.12.2
+  - pygeoutils=0.12.2
+  - py3dep=0.12.2
   - pynhd=0.12.1
-  - pygeohydro=1.12.2
-  - pydaymet=0.12.1
+  - pygeohydro=1.12.3
+  - pydaymet=0.12.2
 
-  # optional deps to speed up xarray and geopandas
+  # Optional deps to speed up xarray
   - bottleneck
-  - pygeos
 
   # Other third-party deps
   - cartopy
