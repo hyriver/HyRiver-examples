@@ -20,9 +20,9 @@ dependencies:
 
   # Other third-party deps
   - cartopy
+  - datashader
   - mapclassify
   - contextily
-  - colorcet
   - geoviews
   - hvplot
   - osmnx
@@ -31,4 +31,6 @@ dependencies:
   - ffmpeg
   - jupyterlab_widgets
   - ipywidgets
+  - proplot
   - pygmo
+  - xarray-spatial
