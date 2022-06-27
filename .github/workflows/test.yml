@@ -26,7 +26,7 @@ jobs:
         notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'dam_impact', 'daymet', 'geoconnex', 'hymod_calibration', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'noaa', 'nwis', 'pet_validation', 'pygeoapi', 'rem', 'ssebop', 'us_coasts', 'water_quality', 'webservices']
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.10.0
         with:
           access_token: ${{ github.token }}
       - uses: actions/checkout@master
