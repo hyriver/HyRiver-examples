@@ -12,6 +12,10 @@ on:
     tags-ignore:
       - "**"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: ${{ matrix.notebook }} notebook
@@ -25,11 +29,7 @@ jobs:
         os: [ubuntu-latest]
         notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'dam_impact', 'daymet', 'geoconnex', 'hymod_calibration', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'noaa', 'nwis', 'pet_validation', 'pygeoapi', 'rem', 'ssebop', 'us_coasts', 'water_quality', 'webservices']
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Set environment variables
         run: |-
           echo "CONDA_ENV_FILE=environment.yml" >> $GITHUB_ENV
