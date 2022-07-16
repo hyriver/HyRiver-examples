@@ -12,51 +12,37 @@ on:
     tags-ignore:
       - "**"
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   test:
-    name: ${{ matrix.notebook }} notebook
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -l {0}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     strategy:
       matrix:
-        python-version: [3.9]
-        os: [ubuntu-latest]
         notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'dam_impact', 'daymet', 'geoconnex', 'hymod_calibration', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'noaa', 'nwis', 'pet_validation', 'pygeoapi', 'rem', 'ssebop', 'us_coasts', 'water_quality', 'webservices']
+    
     steps:
       - uses: actions/checkout@v3
+
       - name: Set environment variables
         run: |-
+          echo "TODAY=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           echo "CONDA_ENV_FILE=environment.yml" >> $GITHUB_ENV
-          echo "PYTHON_VERSION=${{ matrix.python-version }}" >> $GITHUB_ENV
-      - name: Cache conda
-        uses: actions/cache@v3
+
+      - name: Setup micromamba
+        uses: mamba-org/provision-with-micromamba@main
         with:
-          path: ~/conda_pkgs_dir
-          key:
-            ${{ runner.os }}-conda-py${{ matrix.python-version }}-${{
-            hashFiles('environment.yml') }}
-      - name: Setup conda
-        uses: conda-incubator/setup-miniconda@v2.1.1
-        with:
-          channel-priority: strict
-          miniforge-version: latest
-          miniforge-variant: Mambaforge
-          environment-file: environment.yml
-          python-version: ${{ matrix.python-version }}
-          activate-environment: binder
-          use-mamba: true
-          use-only-tar-bz2: true
+          environment-file: ${{ env.CONDA_ENV_FILE }}
+          environment-name: binder
+          cache-env: true
+          cache-env-key: "${{env.TODAY}}-${{hashFiles(env.CONDA_ENV_FILE)}}"
+
       - name: Install nbmake
-        run: |-
-          mamba info -a
-          mamba list
-          python -m pip install pytest nbmake
+        run: mamba install -y pytest nbmake
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
