@@ -1,7 +1,7 @@
-[![Logo](https://raw.githubusercontent.com/cheginit/HyRiver-examples/main/notebooks/_static/hyriver_logo_text.png)](https://github.com/cheginit/HyRiver)
+[![Logo](https://raw.githubusercontent.com/hyriver/HyRiver-examples/main/notebooks/_static/hyriver_logo_text.png)](https://github.com/hyriver/HyRiver)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheginit/hyriver-examples/HEAD?urlpath=lab/tree/notebooks)
-[![CI](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/cheginit/hyriver-examples/actions/workflows/test.yml)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hyriver/hyriver-examples/HEAD?urlpath=lab/tree/notebooks)
+[![CI](https://github.com/hyriver/hyriver-examples/actions/workflows/test.yml/badge.svg)](https://github.com/hyriver/hyriver-examples/actions/workflows/test.yml)
 [![status](https://joss.theoj.org/papers/b0df2f6192f0a18b9e622a3edff52e77/status.svg)](https://joss.theoj.org/papers/b0df2f6192f0a18b9e622a3edff52e77)
 
 # Examples Notebooks
