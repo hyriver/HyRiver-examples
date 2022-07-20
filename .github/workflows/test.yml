@@ -42,7 +42,7 @@ jobs:
           cache-env-key: "${{env.TODAY}}-${{hashFiles(env.CONDA_ENV_FILE)}}"
 
       - name: Install nbmake
-        run: mamba install -y pytest nbmake
+        run: micromamba install -y pytest nbmake
       - name: Version info
         run: |-
           python -c "import pygeohydro; pygeohydro.show_versions()"
