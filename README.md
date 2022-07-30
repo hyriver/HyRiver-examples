@@ -21,3 +21,21 @@ within the US. Some of the major capabilities of HyRiver are as follows:
   accumulation through a river network.
 - A URL inventory for some of the popular (and tested) web services.
 - Some utilities for manipulating the obtained data and their visualization.
+
+# Citation
+
+If you use any of HyRiver packages in your research, we appreciate citations:
+
+```bibtex
+    @article{Chegini_2021,
+        author = {Chegini, Taher and Li, Hong-Yi and Leung, L. Ruby},
+        doi = {10.21105/joss.03175},
+        journal = {Journal of Open Source Software},
+        month = {10},
+        number = {66},
+        pages = {1--3},
+        title = {{HyRiver: Hydroclimate Data Retriever}},
+        volume = {6},
+        year = {2021}
+    }
+```
