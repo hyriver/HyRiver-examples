@@ -6,13 +6,13 @@ dependencies:
   - python>=3.10
 
   # HyRiver packages
-  - async_retriever>=0.3.1
-  - pygeoogc>=0.13.2
+  - async_retriever>=0.3.4
+  - pygeoogc>=0.13.3
   - pygeoutils>=0.13.2
   - py3dep>=0.13.3
-  - pynhd>=0.13.2
-  - pygeohydro>=0.12.3
-  - pydaymet>=0.13.2
+  - pynhd>=0.13.3
+  - pygeohydro>=0.13.3
+  - pydaymet>=0.13.3
 
   # Optional deps to speed up xarray and daymet
   - bottleneck
@@ -20,7 +20,6 @@ dependencies:
 
   # Other third-party deps
   - cartopy
-  - datashader
   - mapclassify
   - contextily
   - geoviews
@@ -31,6 +30,6 @@ dependencies:
   - ffmpeg
   - jupyterlab_widgets
   - ipywidgets
-  - proplot
   - pygmo
   - xarray-spatial
+  - datashader
