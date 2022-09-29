@@ -9,18 +9,20 @@ the snake case naming convention.
 """
 import functools
 import warnings
-from dataclasses import dataclass
-from typing import List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
 
 try:
     from numba import njit
+
+    ngjit = functools.partial(njit, cache=True, nogil=True)
 except ImportError:
     warnings.warn("Numba not installed. Using slow pure python version.", UserWarning)
 
-    def njit(type, cache):
+    def ngjit(_):
         def decorator_njit(func):
             @functools.wraps(func)
             def wrapper_decorator(*args, **kwargs):
@@ -31,8 +33,11 @@ except ImportError:
         return decorator_njit
 
 
-@njit("f8(f8, f8)", cache=True)
-def power(x: float, exp: float) -> float:
+ZERO = np.float64(0)
+
+
+@ngjit("f8(f8, f8)")
+def power(x: np.float64, exp: np.float64) -> np.float64:
     """Raise to power of abs value needed to capture invalid overflow with netgative values.
 
     Parameters
@@ -50,25 +55,27 @@ def power(x: float, exp: float) -> float:
     return np.power(np.abs(x), exp)
 
 
-@njit("UniTuple(f8, 2)(f8, f8, f8)", cache=True)
-def linear_reservoir(x_slow: float, inflow: float, k_s: float) -> float:
+@ngjit("UniTuple(f8, 2)(f8, f8, f8)")
+def linear_reservoir(
+    x_slow: np.float64, inflow: np.float64, k_s: np.float64
+) -> Tuple[np.float64, np.float64]:
     """Run the linear reservoir model."""
     xn_slow = (1 - k_s) * x_slow + (1 - k_s) * inflow
     outflow = k_s / (1 - k_s) * xn_slow
     return xn_slow, outflow
 
 
-@njit("UniTuple(f8, 2)(f8, f8, f8, f8, f8)", cache=True)
+@ngjit("UniTuple(f8, 2)(f8, f8, f8, f8, f8)")
 def excess(
-    prcp_t: float,
-    pet_t: float,
-    x_loss: float,
-    c_max: float,
-    b_exp: float,
-) -> Tuple[float, float]:
+    prcp_t: np.float64,
+    pet_t: np.float64,
+    x_loss: np.float64,
+    c_max: np.float64,
+    b_exp: np.float64,
+) -> Tuple[np.float64, np.float64]:
     """Calculates excess precipitation and evaporation."""
     ct_prev = c_max * (1 - power(1 - ((b_exp + 1) * (x_loss) / c_max), 1 / (b_exp + 1)))
-    er_1 = np.maximum(prcp_t - c_max + ct_prev, 0.0)
+    er_1 = np.maximum(prcp_t - c_max + ct_prev, ZERO)
     s_1 = prcp_t - er_1
     dummy = np.minimum((ct_prev + s_1) / c_max, 1)
     xn = c_max / (b_exp + 1) * (1 - power(1 - dummy, b_exp + 1))
@@ -81,17 +88,16 @@ def excess(
     return er_1 + er_2, xn
 
 
-@njit("f8[::1](f8[::1], f8[::1], f8, f8, f8, f8, f8, b1)", cache=True)
+@ngjit("f8[::1](f8[::1], f8[::1], f8, f8, f8, f8, f8)")
 def run(
-    prcp: np.ndarray,
-    pet: np.ndarray,
-    c_max: float,
-    b_exp: float,
-    alpha: float,
-    k_s: float,
-    k_q: float,
-    init_flow: bool = False,
-) -> np.ndarray:
+    prcp: npt.NDArray[np.float64],
+    pet: npt.NDArray[np.float64],
+    c_max: np.float64,
+    b_exp: np.float64,
+    alpha: np.float64,
+    k_s: np.float64,
+    k_q: np.float64,
+) -> npt.NDArray[np.float64]:
     """Run the Hymod [1] model.
 
     Parameters
@@ -110,10 +116,6 @@ def run(
         Residence time of the slow release reservoir (0.01-0.5 [day]).
     k_q : float
         Residence time of the quick release reservoir (0.5-1.2 [day]).
-    init_flow : bool, optional
-        Initialize the flow with non-zero values, defaults to ``False``. This
-        could be useful for cases where the initial flow is known to be a high
-        value, e.g., from the streamflow observation data.
 
     Returns
     -------
@@ -126,11 +128,9 @@ def run(
     for rainfall-runoff simulation using the GLUE method. Remote Sensing and GIS for Hydrology
     and Water Resources, 180 - 185, IAHS Publ. 368. DOI: 10.5194/piahs-368-180-2015.
     """
-
-    x_loss = 0.0
-    x_slow = 2.3503 / (k_s * 22.5) if init_flow else 0.0
+    x_loss = ZERO
+    x_slow = ZERO
     x_quick = np.zeros(3, dtype="f8")
-    t = 0
     n_steps = prcp.shape[0]
     q_out = np.zeros(n_steps, dtype="f8")
 
@@ -153,8 +153,8 @@ def run(
     return q_out
 
 
-@njit("f8(f8[::1], f8[::1])", cache=True)
-def compute_kge(obs: np.ndarray, sim: np.ndarray) -> float:
+@ngjit("f8(f8[::1], f8[::1])")
+def compute_kge(sim: npt.NDArray[np.float64], obs: npt.NDArray[np.float64]) -> np.float64:
     """Compute Kling-Gupta Efficiency."""
     cc = np.corrcoef(obs, sim)[0, 1]
     alpha = np.std(sim) / np.std(obs)
@@ -163,47 +163,34 @@ def compute_kge(obs: np.ndarray, sim: np.ndarray) -> float:
     return kge
 
 
-@dataclass
 class HYMOD:
     """Simulate a watershed using HYMOD model."""
 
-    clm: pd.DataFrame
-    qobs: pd.DataFrame
-    bounds: List[Tuple[Tuple[float, ...], Tuple[float, ...]]]
-    warm_up: int
-    init_flow: bool = False
+    def __init__(self, clm: pd.DataFrame, qobs: pd.Series, warm_up: int) -> None:
+        """Initialize the model.
 
-    @staticmethod
-    def simulate(
-        prcp: np.ndarray,
-        pet: np.ndarray,
-        c_max: float,
-        b_exp: float,
-        alpha: float,
-        k_s: float,
-        k_q: float,
-        init_flow: bool = False,
-    ) -> np.ndarray:
-        """Simulate a watershed using HYMOD model."""
-        return run(prcp, pet, c_max, b_exp, alpha, k_s, k_q, init_flow)
+        Parameters
+        ----------
+        clm : pandas.DataFrame
+            Climate data with two columns: ``prcp`` and ``pet``.
+        qobs : pandas.Series
+            Streamflow observations.
+        warm_up : int
+            Number of warm-up years.
+        """
+        self.prcp = clm.prcp.to_numpy("f8")
+        self.pet = clm.pet.to_numpy("f8")
+        self.qobs = qobs.to_numpy("f8")
+        self.cal_idx = np.s_[warm_up * 365 :]
 
-    def fitness(self, x: np.ndarray) -> List[float]:
+    def simulate(self, x: npt.NDArray[np.float64]) -> np.float64:
         """Compute objective functions."""
-        simulation = self.simulate(*self.clm.to_numpy("f8").T, *tuple(x), self.init_flow)
-        idx = np.s_[self.warm_up * 365 :]
-        sim = simulation[idx]
-        obs = self.qobs.to_numpy("f8").squeeze()[idx]
-        kge = compute_kge(obs, sim)
-        return [-kge]
+        c_max, b_exp, alpha, k_s, k_q = x
+        return run(self.prcp, self.pet, c_max, b_exp, alpha, k_s, k_q)
 
-    def get_nobj(self) -> int:
-        """Get number of objective functions."""
-        return 1
-
-    def get_bounds(self) -> List[Tuple[Tuple[float, ...], Tuple[float, ...]]]:
-        """Get bounds of the calibrated parameters."""
-        return self.bounds
-
-    def get_name(self) -> str:
-        """Get the model name."""
-        return "HYMOD Hyrological Model"
+    def fit(self, x: npt.NDArray[np.float64]) -> np.float64:
+        """Compute objective functions."""
+        c_max, b_exp, alpha, k_s, k_q = x
+        qsim = run(self.prcp, self.pet, c_max, b_exp, alpha, k_s, k_q)
+        kge = compute_kge(qsim[self.cal_idx], self.qobs[self.cal_idx])
+        return -kge
