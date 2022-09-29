@@ -1,22 +1,24 @@
 name: binder
 channels:
+  - numba
   - conda-forge
   - nodefaults
 dependencies:
   - python>=3.10
 
   # HyRiver packages
-  - async_retriever>=0.3.4
-  - pygeoogc>=0.13.3
-  - pygeoutils>=0.13.2
-  - py3dep>=0.13.3
-  - pynhd>=0.13.3
-  - pygeohydro>=0.13.3
-  - pydaymet>=0.13.3
+  - async_retriever>=0.3.6
+  - pygeoogc>=0.13.6
+  - pygeoutils>=0.13.6
+  - py3dep>=0.13.6
+  - pynhd>=0.13.6
+  - pygeohydro>=0.13.6
+  - pydaymet>=0.13.6
 
   # Optional deps to speed up xarray and daymet
   - bottleneck
   - numba
+  - icc_rt
 
   # Other third-party deps
   - cartopy
@@ -30,6 +32,5 @@ dependencies:
   - ffmpeg
   - jupyterlab_widgets
   - ipywidgets
-  - pygmo
   - xarray-spatial
   - datashader
