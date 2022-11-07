@@ -107,7 +107,7 @@ def run(
     pet : array_like
         Potential evapotranspiration data in mm/day.
     c_max : float
-        Maximum storage capacity (1-100 [mm]).
+        Maximum storage capacity (1-1500 [mm]).
     b_exp : float
         Degree of spatial variability of the soil moisture capacity (0-2 [-]).
     alpha : float
@@ -166,7 +166,7 @@ def compute_kge(sim: npt.NDArray[np.float64], obs: npt.NDArray[np.float64]) -> n
 class HYMOD:
     """Simulate a watershed using HYMOD model."""
 
-    def __init__(self, clm: pd.DataFrame, qobs: pd.Series, warm_up: int) -> None:
+    def __init__(self, clm: pd.DataFrame, qobs: pd.Series, cmax: float, warm_up: int) -> None:
         """Initialize the model.
 
         Parameters
@@ -181,16 +181,17 @@ class HYMOD:
         self.prcp = clm.prcp.to_numpy("f8")
         self.pet = clm.pet.to_numpy("f8")
         self.qobs = qobs.to_numpy("f8")
+        self.cmax = np.float64(cmax)
         self.cal_idx = np.s_[warm_up * 365 :]
 
     def simulate(self, x: npt.NDArray[np.float64]) -> np.float64:
         """Compute objective functions."""
-        c_max, b_exp, alpha, k_s, k_q = x
-        return run(self.prcp, self.pet, c_max, b_exp, alpha, k_s, k_q)
+        b_exp, alpha, k_s, k_q = x
+        return run(self.prcp, self.pet, self.cmax, b_exp, alpha, k_s, k_q)
 
     def fit(self, x: npt.NDArray[np.float64]) -> np.float64:
         """Compute objective functions."""
-        c_max, b_exp, alpha, k_s, k_q = x
-        qsim = run(self.prcp, self.pet, c_max, b_exp, alpha, k_s, k_q)
+        b_exp, alpha, k_s, k_q = x
+        qsim = run(self.prcp, self.pet, self.cmax, b_exp, alpha, k_s, k_q)
         kge = compute_kge(qsim[self.cal_idx], self.qobs[self.cal_idx])
         return -kge

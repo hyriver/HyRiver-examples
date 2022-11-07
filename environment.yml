@@ -8,23 +8,25 @@ dependencies:
 
   # HyRiver packages
   - async_retriever>=0.3.6
-  - pygeoogc>=0.13.6
-  - pygeoutils>=0.13.6
-  - py3dep>=0.13.6
-  - pynhd>=0.13.6
-  - pygeohydro>=0.13.6
-  - pydaymet>=0.13.6
+  - pygeoogc>=0.13.7
+  - pygeoutils>=0.13.9
+  - py3dep>=0.13.7
+  - pynhd>=0.13.7
+  - pygeohydro>=0.13.7
+  - pydaymet>=0.13.7
 
-  # Optional deps to speed up xarray and daymet
+  # optional deps for speeding up some operations
   - bottleneck
   - numba
-  - icc_rt
+  - planetary-computer
+  - pyogrio
+  - pystac-client
+  - richdem>=0.3.4
+
 
   # Other third-party deps
-  - cartopy
   - mapclassify
   - contextily
-  - geoviews
   - hvplot
   - osmnx
   - tqdm
