@@ -4,16 +4,16 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python>=3.10
+  - python >=3.10
 
   # HyRiver packages
-  - async_retriever>=0.3.6
-  - pygeoogc>=0.13.7
-  - pygeoutils>=0.13.9
-  - py3dep>=0.13.7
-  - pynhd>=0.13.7
-  - pygeohydro>=0.13.7
-  - pydaymet>=0.13.7
+  - async-retriever >=0.3.8
+  - pygeoogc >=0.13.8
+  - pygeoutils >=0.13.10
+  - py3dep >=0.13.8
+  - pynhd >=0.13.8
+  - pygeohydro >=0.13.8
+  - pydaymet >=0.13.8
 
   # optional deps for speeding up some operations
   - bottleneck
@@ -21,8 +21,7 @@ dependencies:
   - planetary-computer
   - pyogrio
   - pystac-client
-  - richdem>=0.3.4
-
+  - richdem >=0.3.4
 
   # Other third-party deps
   - mapclassify
