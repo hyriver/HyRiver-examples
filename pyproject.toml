@@ -16,6 +16,7 @@ isort = [
     "-p", "pygeoutils",
     "-p", "py3dep",
     "-p", "pynhd",
+    "-p", "hydrosignatures",
     "-p", "pydaymet",
     "-p", "pygeohydro",
 ]
@@ -31,7 +32,16 @@ target-version = ['py38']
 [tool.isort]
 profile = "black"
 default_section = "THIRDPARTY"
-known_first_party = ["async_retriever", "pygeoogc", "pygeoutils", "py3dep", "pynhd", "pydaymet", "pygeohydro"]
+known_first_party = [
+    "async_retriever",
+    "pygeoogc",
+    "pygeoutils",
+    "py3dep",
+    "pynhd",
+    "hydrosignatures",
+    "pydaymet",
+    "pygeohydro",
+]
 multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
