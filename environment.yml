@@ -8,13 +8,14 @@ dependencies:
 
   # HyRiver packages
   - async-retriever >=0.3.8
-  - pygeoogc >=0.13.9
+  - pygeoogc >=0.13.10
   - pygeoutils >=0.13.10
-  - py3dep >=0.13.9
+  - py3dep >=0.13.10
   - pynhd >=0.13.8
   - hydrosignatures >=0.1.1
   - pygeohydro >=0.13.8
   - pydaymet >=0.13.8
+  - pynldas2 >=0.1.1
 
   # optional deps for speeding up some operations
   - bottleneck
