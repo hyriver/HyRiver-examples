@@ -23,7 +23,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'dam_impact', 'daymet', 'geoconnex', 'hymod_calibration', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'noaa', 'nwis', 'pet_validation', 'pygeoapi', 'rem', 'ssebop', 'us_coasts', 'water_quality', 'webservices']
+        notebook: ['3dep', 'aridity', 'columbia', 'cross_section', 'dam_impact', 'daymet', 'flood_peak', 'geoconnex', 'hymod_calibration', 'ndvi', 'nhdplus', 'nid', 'nlcd', 'nldas', 'noaa', 'nwis', 'pet_validation', 'pygeoapi', 'rem', 'signatures', 'soil', 'ssebop', 'us_coasts', 'water_quality', 'webservices']
 
     steps:
       - uses: actions/checkout@v3
