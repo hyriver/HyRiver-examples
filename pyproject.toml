@@ -28,7 +28,6 @@ flake8 = ["--ignore", "E203,E402,E501,E731,W503,D107,D105", "--exclude",
 
 [tool.black]
 line-length = 100
-target-version = ['py38']
 
 [tool.pycln]
 path = "notebooks"
