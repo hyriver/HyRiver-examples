@@ -21,7 +21,7 @@ dependencies:
   - bottleneck
   - numba
   - planetary-computer
-  - pyogrio
+  - pyogrio >=0.5.0
   - pystac-client
   - richdem >=0.3.4
 
@@ -34,6 +34,6 @@ dependencies:
   - pytables
   - ffmpeg
   - jupyterlab_widgets
-  - ipywidgets
+  - ipywidgets <8
   - xarray-spatial
   - datashader
