@@ -7,23 +7,24 @@ dependencies:
   - python >=3.10
 
   # HyRiver packages
-  - async-retriever >=0.3.8
-  - pygeoogc >=0.13.9
-  - pygeoutils >=0.13.10
-  - py3dep >=0.13.9
-  - pynhd >=0.13.8
-  - hydrosignatures >=0.1.1
-  - pygeohydro >=0.13.8
-  - pydaymet >=0.13.8
-  - pynldas2 >=0.1.1
+  - async-retriever >=0.3.12
+  - pygeoogc >=0.13.12
+  - pygeoutils >=0.13.12
+  - py3dep >=0.13.12
+  - pynhd >=0.13.12
+  - hydrosignatures >=0.1.12
+  - pygeohydro >=0.13.12
+  - pydaymet >=0.13.12
+  - pynldas2 >=0.1.12
 
   # optional deps for speeding up some operations
   - bottleneck
   - numba
   - planetary-computer
-  - pyogrio >=0.5.0
   - pystac-client
-  - richdem >=0.3.4
+  - pyogrio >=0.5.0
+  - py7zr
+  - pyflwdir >=0.5.6
 
   # Other third-party deps
   - mapclassify
@@ -33,7 +34,6 @@ dependencies:
   - tqdm
   - pytables
   - ffmpeg
-  - jupyterlab_widgets
   - ipywidgets <8
   - xarray-spatial
   - datashader
