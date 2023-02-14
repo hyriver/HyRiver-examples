@@ -1,39 +1,44 @@
 name: binder
 channels:
-  - numba
-  - conda-forge
-  - nodefaults
+- pytorch
+- numba
+- conda-forge
+- nodefaults
 dependencies:
-  - python >=3.10
+- python >=3.10
 
-  # HyRiver packages
-  - async-retriever >=0.3.12
-  - pygeoogc >=0.13.12
-  - pygeoutils >=0.13.12
-  - py3dep >=0.13.12
-  - pynhd >=0.13.12
-  - hydrosignatures >=0.1.12
-  - pygeohydro >=0.13.12
-  - pydaymet >=0.13.12
-  - pynldas2 >=0.1.12
+# HyRiver packages
+- async-retriever >=0.3.12
+- pygeoogc >=0.13.12
+- pygeoutils >=0.13.12
+- py3dep >=0.13.12
+- pynhd >=0.13.12
+- hydrosignatures >=0.1.12
+- pygeohydro >=0.13.12
+- pydaymet >=0.13.12
+- pynldas2 >=0.1.12
 
-  # optional deps for speeding up some operations
-  - bottleneck
-  - numba
-  - planetary-computer
-  - pystac-client
-  - pyogrio >=0.5.0
-  - py7zr
-  - pyflwdir >=0.5.6
+# optional HyRiver deps
+- numba
+- planetary-computer
+- pystac-client
+- pyogrio >=0.5.0
+- py7zr
+- pyflwdir >=0.5.6
 
-  # Other third-party deps
-  - mapclassify
-  - contextily
-  - hvplot
-  - osmnx
-  - tqdm
-  - pytables
-  - ffmpeg
-  - ipywidgets <8
-  - xarray-spatial
-  - datashader
+# optional deps for speeding xarray
+- bottleneck
+
+# Other deps required by example notebooks
+- mapclassify
+- contextily
+- hvplot
+- osmnx
+- tqdm
+- pytables
+- ffmpeg
+- ipywidgets
+- xarray-spatial
+- datashader
+- pytorch
+- torchvision
