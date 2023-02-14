@@ -20,7 +20,7 @@ try:
 
     ngjit = functools.partial(njit, cache=True, nogil=True)
 except ImportError:
-    warnings.warn("Numba not installed. Using slow pure python version.", UserWarning)
+    warnings.warn("Numba not installed. Using slow pure python version.", UserWarning, stacklevel=2)
 
     def ngjit(_):
         def decorator_njit(func):
