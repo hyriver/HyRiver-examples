@@ -18,7 +18,7 @@ isort = [
     "-p", "pynhd",
     "-p", "hydrosignatures",
     "-p", "pydaymet",
-    "-p", "pynldas",
+    "-p", "pynldas2",
     "-p", "pygeohydro",
 ]
 black = ["-t", "py38", "-l", "100"]
@@ -49,7 +49,7 @@ known_first_party = [
     "pynhd",
     "hydrosignatures",
     "pydaymet",
-    "pynldas",
+    "pynldas2",
     "pygeohydro",
 ]
 multi_line_output = 3
