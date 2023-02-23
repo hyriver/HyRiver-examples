@@ -1,6 +1,5 @@
 name: binder
 channels:
-- pytorch
 - numba
 - conda-forge
 - nodefaults
@@ -40,5 +39,3 @@ dependencies:
 - ipywidgets
 - xarray-spatial
 - datashader
-- pytorch
-- torchvision
