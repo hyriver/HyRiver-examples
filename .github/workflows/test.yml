@@ -9,8 +9,6 @@ on:
   pull_request:
     branches:
     - '**'
-    tags-ignore:
-    - '**'
 
 jobs:
   test:
@@ -23,7 +21,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        notebook: [3dep, aridity, classification, columbia, cross_section, dam_impact, daymet, flood_peak, geoconnex, hymod_calibration, ndvi, nhdplus, nid, nlcd, nldas, noaa, nwis, pet_validation, pygeoapi, rem, signatures, soil, ssebop, things, us_coasts, water_quality, webservices]
+        notebook: [3dep, aridity, classification, columbia, cross_section, dam_impact, daymet, flood_peak, geoconnex, hwms, hymod_calibration, ndvi, nhdplus, nid, nlcd, nldas, noaa, nwis, pet_validation, pygeoapi, rem, signatures, soil, ssebop, things, us_coasts, water_quality, webservices]
 
     steps:
     - uses: actions/checkout@v3
@@ -34,12 +32,12 @@ jobs:
         echo "CONDA_ENV_FILE=environment.yml" >> $GITHUB_ENV
 
     - name: Setup micromamba
-      uses: mamba-org/provision-with-micromamba@main
+      uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: ${{ env.CONDA_ENV_FILE }}
         environment-name: binder
-        cache-env: true
-        cache-env-key: ${{env.TODAY}}-${{hashFiles(env.CONDA_ENV_FILE)}}
+        cache-environment: true
+        cache-environment-key: ${{env.TODAY}}-${{hashFiles(env.CONDA_ENV_FILE)}}
 
     - name: Install nbmake
       run: micromamba install -y pytest nbmake
