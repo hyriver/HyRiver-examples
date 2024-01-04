@@ -7,25 +7,32 @@ This version rewrites the code using ``numba`` with type signatures for signific
 speed up. Also, the naming convention has been changed to be consistent with
 the snake case naming convention.
 """
+from __future__ import annotations
+
 import functools
-import warnings
-from typing import Tuple
+from typing import TYPE_CHECKING, Any, Callable, TypeVar
 
 import numpy as np
 import numpy.typing as npt
 import pandas as pd
 
+if TYPE_CHECKING:
+    FloatArray = npt.NDArray[np.float64]
+
 try:
-    from numba import njit
+    from numba import config as numba_config
+    from numba import jit
 
-    ngjit = functools.partial(njit, cache=True, nogil=True)
+    ngjit = functools.partial(jit, nopython=True, nogil=True)
+    numba_config.THREADING_LAYER = "workqueue"  # pyright: ignore[reportGeneralTypeIssues]
 except ImportError:
-    warnings.warn("Numba not installed. Using slow pure python version.", UserWarning, stacklevel=2)
+    T = TypeVar("T")
+    Func = Callable[..., T]
 
-    def ngjit(_):
-        def decorator_njit(func):
+    def ngjit(signature_or_function: str | Func[T]) -> Callable[[Func[T]], Func[T]]:
+        def decorator_njit(func: Func[T]) -> Func[T]:
             @functools.wraps(func)
-            def wrapper_decorator(*args, **kwargs):
+            def wrapper_decorator(*args: tuple[Any, ...], **kwargs: dict[str, Any]) -> T:
                 return func(*args, **kwargs)
 
             return wrapper_decorator
@@ -58,7 +65,7 @@ def power(x: np.float64, exp: np.float64) -> np.float64:
 @ngjit("UniTuple(f8, 2)(f8, f8, f8)")
 def linear_reservoir(
     x_slow: np.float64, inflow: np.float64, k_s: np.float64
-) -> Tuple[np.float64, np.float64]:
+) -> tuple[np.float64, np.float64]:
     """Run the linear reservoir model."""
     xn_slow = (1 - k_s) * x_slow + (1 - k_s) * inflow
     outflow = k_s / (1 - k_s) * xn_slow
@@ -72,7 +79,7 @@ def excess(
     x_loss: np.float64,
     c_max: np.float64,
     b_exp: np.float64,
-) -> Tuple[np.float64, np.float64]:
+) -> tuple[np.float64, np.float64]:
     """Calculates excess precipitation and evaporation."""
     ct_prev = c_max * (1 - power(1 - ((b_exp + 1) * (x_loss) / c_max), 1 / (b_exp + 1)))
     er_1 = np.maximum(prcp_t - c_max + ct_prev, ZERO)
@@ -90,14 +97,14 @@ def excess(
 
 @ngjit("f8[::1](f8[::1], f8[::1], f8, f8, f8, f8, f8)")
 def run(
-    prcp: npt.NDArray[np.float64],
-    pet: npt.NDArray[np.float64],
+    prcp: FloatArray,
+    pet: FloatArray,
     c_max: np.float64,
     b_exp: np.float64,
     alpha: np.float64,
     k_s: np.float64,
     k_q: np.float64,
-) -> npt.NDArray[np.float64]:
+) -> FloatArray:
     """Run the Hymod [1] model.
 
     Parameters
@@ -130,6 +137,7 @@ def run(
     """
     x_loss = ZERO
     x_slow = ZERO
+    outflow = ZERO
     x_quick = np.zeros(3, dtype="f8")
     n_steps = prcp.shape[0]
     q_out = np.zeros(n_steps, dtype="f8")
@@ -154,7 +162,7 @@ def run(
 
 
 @ngjit("f8(f8[::1], f8[::1])")
-def compute_kge(sim: npt.NDArray[np.float64], obs: npt.NDArray[np.float64]) -> np.float64:
+def compute_kge(sim: FloatArray, obs: FloatArray) -> np.float64:
     """Compute Kling-Gupta Efficiency."""
     cc = np.corrcoef(obs, sim)[0, 1]
     alpha = np.std(sim) / np.std(obs)
@@ -184,12 +192,12 @@ class HYMOD:
         self.cmax = np.float64(cmax)
         self.cal_idx = np.s_[warm_up * 365 :]
 
-    def simulate(self, x: npt.NDArray[np.float64]) -> np.float64:
+    def simulate(self, x: FloatArray) -> FloatArray:
         """Compute objective functions."""
         b_exp, alpha, k_s, k_q = x
         return run(self.prcp, self.pet, self.cmax, b_exp, alpha, k_s, k_q)
 
-    def fit(self, x: npt.NDArray[np.float64]) -> np.float64:
+    def fit(self, x: FloatArray) -> np.float64:
         """Compute objective functions."""
         b_exp, alpha, k_s, k_q = x
         qsim = run(self.prcp, self.pet, self.cmax, b_exp, alpha, k_s, k_q)
