@@ -25,34 +25,13 @@ repos:
     name: Find and remove unused import statements with pycln
     args: [--config=pyproject.toml]
 
-- repo: https://github.com/PyCQA/isort
-  rev: 5.13.2
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.3.2
   hooks:
-  - id: isort
-    name: Sort imports with isort
-
-- repo: https://github.com/psf/black
-  rev: 23.12.1
-  hooks:
-  - id: black
-    name: Autoformat with black
-    additional_dependencies: [ipython, tokenize-rt]
-
-- repo: https://github.com/nbQA-dev/nbQA
-  rev: 1.7.1
-  hooks:
-  - id: nbqa-isort
-    name: Format notebooks; sort imports by isort
-    files: notebooks
-
-  - id: nbqa-black
-    name: Format notebooks; reformat by black
-    files: notebooks
-
-  - id: nbqa-pyupgrade
-    files: notebooks
-    name: Format notebooks; upgrade syntax to Python 3.8+ by pyupgrade
-
-  - id: nbqa-flake8
-    name: Format notebooks; lint with flake8
-    files: notebooks
+  - id: ruff
+    name: Linting with Ruff
+    types_or: [python, jupyter]
+    args: [--fix]
+  - id: ruff-format
+    name: Formatting with Ruff
+    types_or: [python, jupyter]
