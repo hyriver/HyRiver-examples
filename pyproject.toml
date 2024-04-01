@@ -83,14 +83,11 @@ lint.ignore = [
     # avoid lambda
     "E731",
 ]
-line-length = 100
-
-[tool.ruff.lint.flake8-bugbear]
-extend-immutable-calls = [
-    "chr",
-    "typer.Argument",
-    "typer.Option",
+lint.extend-safe-fixes = [
+  # absolute imports
+  "TID252",
 ]
+line-length = 100
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
@@ -108,12 +105,3 @@ known-first-party = [
     "pygridmet",
     "pynldas2",
 ]
-
-[tool.pycln]
-path = "notebooks"
-include="(.*\\.py|.*\\.ipynb)"
-exclude="(\\.ipynb_checkpoints|__pycache__)"
-expand_stars = true
-verbose = true
-all = true
-no_gitignore = false
