@@ -7,6 +7,7 @@ This version rewrites the code using ``numba`` with type signatures for signific
 speed up. Also, the naming convention has been changed to be consistent with
 the snake case naming convention.
 """
+
 from __future__ import annotations
 
 import functools
@@ -14,9 +15,10 @@ from typing import TYPE_CHECKING, Any, Callable, TypeVar
 
 import numpy as np
 import numpy.typing as npt
-import pandas as pd
 
 if TYPE_CHECKING:
+    import pandas as pd
+
     FloatArray = npt.NDArray[np.float64]
 
 try:
@@ -24,7 +26,7 @@ try:
     from numba import jit
 
     ngjit = functools.partial(jit, nopython=True, nogil=True)
-    numba_config.THREADING_LAYER = "workqueue"  # pyright: ignore[reportGeneralTypeIssues]
+    numba_config.THREADING_LAYER = "workqueue"
 except ImportError:
     T = TypeVar("T")
     Func = Callable[..., T]
@@ -80,7 +82,7 @@ def excess(
     c_max: np.float64,
     b_exp: np.float64,
 ) -> tuple[np.float64, np.float64]:
-    """Calculates excess precipitation and evaporation."""
+    """Calculate excess precipitation and evaporation."""
     ct_prev = c_max * (1 - power(1 - ((b_exp + 1) * (x_loss) / c_max), 1 / (b_exp + 1)))
     er_1 = np.maximum(prcp_t - c_max + ct_prev, ZERO)
     s_1 = prcp_t - er_1
