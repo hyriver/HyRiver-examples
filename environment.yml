@@ -18,7 +18,7 @@ dependencies:
 - pynldas2 >=0.16
 
 # optional HyRiver deps
-- numba
+- numba>=0.57
 - planetary-computer
 - pystac-client
 - pyogrio >=0.5.0
