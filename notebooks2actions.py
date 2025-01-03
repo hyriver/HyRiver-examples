@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Update .github/workflows/test.yml with list of notebooks to test."""
 
+from __future__ import annotations
+
 import fileinput
 from pathlib import Path
 
