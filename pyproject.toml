@@ -101,8 +101,14 @@ lint.ignore = [
   "PERF203",
 ]
 lint.extend-safe-fixes = [
+  # break down assert
+  "PT018",
+  # Move imports
+  "TC",
   # absolute imports
   "TID252",
+  # module level imports
+  "E402",
 ]
 lint.isort.known-first-party = [
   "async_retriever",
