@@ -99,6 +99,8 @@ lint.ignore = [
   "E731",
   # try-except
   "PERF203",
+  # specify noqa rule
+  "PGH004",
 ]
 lint.extend-safe-fixes = [
   # break down assert
@@ -121,6 +123,8 @@ lint.isort.known-first-party = [
   "pydaymet",
   "pygridmet",
   "pynldas2",
+  "seamless_3dep",
+  "pywbt",
 ]
 lint.isort.required-imports = [ "from __future__ import annotations" ]
 
