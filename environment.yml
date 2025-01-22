@@ -33,7 +33,8 @@ dependencies:
 - mapclassify
 - contextily
 - hvplot
-- osmnx
+- osmnx-base
+- opt-einsum
 - tqdm
 - pytables
 - ffmpeg
