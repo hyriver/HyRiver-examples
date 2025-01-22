@@ -6,19 +6,21 @@ dependencies:
 - python >=3.12
 
 # HyRiver packages
-- async-retriever >=0.18
-- pygeoogc >=0.18
-- pygeoutils >=0.18
-- py3dep >=0.18
-- pynhd >=0.18
-- hydrosignatures >=0.18
-- pygeohydro >=0.18
-- pydaymet >=0.18
-- pygridmet >=0.18
-- pynldas2 >=0.18
+- async-retriever >=0.19
+- pygeoogc >=0.19
+- pygeoutils >=0.19
+- py3dep >=0.19
+- pynhd >=0.19
+- hydrosignatures >=0.19
+- pygeohydro >=0.19
+- pydaymet >=0.19
+- pygridmet >=0.19
+- pynldas2 >=0.19
+- seamless-3dep >=0.3
+- pywbt >=0.2.8
 
 # optional HyRiver deps
-- numba>=0.57
+- numba>=0.60
 - planetary-computer
 - pystac-client
 - py7zr
